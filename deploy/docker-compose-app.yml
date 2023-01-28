@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./deploy/application/Dockerfile
+    image: local/app/api
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8080:8080"
+    networks:
+      - default # this network (app2)
+networks:
+  default: # external network (app1)
+    external: true
